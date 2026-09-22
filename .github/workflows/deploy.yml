@@ -6,16 +6,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,16 +23,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx ng build --configuration production --base-href /SriHanumaChalisa/
-      - uses: actions/upload-pages-artifact@v3
+      - name: Add Pages files
+        run: |
+          touch dist/sri-hanuman-chalisa/browser/.nojekyll
+          cp dist/sri-hanuman-chalisa/browser/index.html dist/sri-hanuman-chalisa/browser/404.html
+      - uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: dist/sri-hanuman-chalisa/browser
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          folder: dist/sri-hanuman-chalisa/browser
+          branch: gh-pages
