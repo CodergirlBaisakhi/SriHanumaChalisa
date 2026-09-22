@@ -1,0 +1,19 @@
+<section class="verses" [class]="scriptClass()">
+  @for (verse of verses(); track verse.id) {
+    <article class="card" [attr.data-type]="verse.type">
+      <header class="meta">
+        @if (verse.type === 'chaupai' && verse.number) {
+          <span class="badge">Chaupai {{ verse.number }}</span>
+        } @else {
+          <span class="badge">Doha</span>
+        }
+      </header>
+      @for (line of verse.lines; track $index) {
+        <p class="line">{{ line }}</p>
+      }
+      @if (showMeaning()) {
+        <p class="meaning">{{ verse.meaningEn }}</p>
+      }
+    </article>
+  }
+</section>

@@ -1,0 +1,54 @@
+<div class="page">
+  <header class="hero">
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 120 120" role="img">
+        <circle cx="60" cy="60" r="54" fill="#7b1113" />
+        <circle cx="60" cy="60" r="42" fill="#e65100" />
+        <circle cx="60" cy="60" r="28" fill="#f4c430" />
+        <path d="M60 18 L66 44 L94 44 L72 60 L80 88 L60 72 L40 88 L48 60 L26 44 L54 44 Z" fill="#fff8e7" />
+      </svg>
+    </div>
+    <p class="kicker">Goswami Tulsidas</p>
+    <h1>Sri Hanuman Chalisa</h1>
+    <p class="subtitle">
+      Recite in {{ chalisa.languages.length }} languages. Choose a language or type its name in search.
+    </p>
+  </header>
+
+  <section class="controls">
+    <app-search-bar
+      [query]="chalisa.searchQuery()"
+      [message]="chalisa.searchMessage()"
+      (searched)="chalisa.search($event)"
+    />
+
+    <app-language-picker
+      [languages]="chalisa.languages"
+      [selectedId]="chalisa.selectedId()"
+      (languageChange)="chalisa.selectLanguage($event)"
+    />
+
+    <div class="toolbar">
+      <p class="now">
+        Now reading:
+        <strong>{{ chalisa.selectedLanguage().name }}</strong>
+        <span>({{ chalisa.selectedLanguage().nativeName }})</span>
+      </p>
+      <button type="button" class="meaning-btn" (click)="chalisa.toggleMeaning()">
+        {{ chalisa.showMeaning() ? 'Hide English meaning' : 'Show English meaning' }}
+      </button>
+    </div>
+  </section>
+
+  <app-verse-list
+    [verses]="chalisa.verses()"
+    [showMeaning]="chalisa.showMeaning()"
+    [scriptClass]="scriptClass()"
+  />
+
+  <footer class="foot">
+    <p>
+      Original Awadhi hymn by Tulsidas (16th century, public domain). Other scripts show the same verses for recitation.
+    </p>
+  </footer>
+</div>

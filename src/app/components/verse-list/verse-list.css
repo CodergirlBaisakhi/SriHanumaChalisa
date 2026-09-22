@@ -1,0 +1,43 @@
+.verses {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.card {
+  background: #fffdf8;
+  border: 1px solid #efd7a4;
+  border-radius: 1rem;
+  padding: 1rem 1.1rem 1.1rem;
+  box-shadow: 0 8px 24px rgb(90 30 10 / 6%);
+}
+
+.meta {
+  margin-bottom: 0.45rem;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--saffron);
+  color: white;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.18rem 0.55rem;
+  font-weight: 700;
+}
+
+.line {
+  margin: 0.2rem 0;
+  font-size: 1.28rem;
+  line-height: 1.7;
+}
+
+.meaning {
+  margin: 0.7rem 0 0;
+  padding-top: 0.65rem;
+  border-top: 1px dashed #e2c48a;
+  color: #5c3b22;
+  font-size: 0.98rem;
+  font-family: 'Noto Sans', sans-serif;
+}

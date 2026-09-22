@@ -1,0 +1,16 @@
+<label class="search">
+  <span class="sr-only">Search by language</span>
+  <input
+    type="search"
+    [value]="query()"
+    (input)="onInput($event)"
+    (keyup)="onInput($event)"
+    (change)="onInput($event)"
+    placeholder="Search a language — odia, hindi, tamil..."
+    autocomplete="off"
+    spellcheck="false"
+  />
+</label>
+@if (message()) {
+  <p class="hint" role="status">{{ message() }}</p>
+}

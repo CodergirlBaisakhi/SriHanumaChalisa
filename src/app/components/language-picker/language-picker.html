@@ -1,0 +1,15 @@
+<div class="chips" role="listbox" aria-label="Choose language">
+  @for (language of languages(); track language.id) {
+    <button
+      type="button"
+      role="option"
+      class="chip"
+      [class.active]="language.id === selectedId()"
+      [attr.aria-selected]="language.id === selectedId()"
+      (click)="languageChange.emit(language.id)"
+    >
+      <span class="name">{{ language.name }}</span>
+      <span class="native">{{ language.nativeName }}</span>
+    </button>
+  }
+</div>

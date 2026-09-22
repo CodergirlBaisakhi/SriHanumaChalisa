@@ -1,0 +1,31 @@
+.search input {
+  width: 100%;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 0.85rem 1.2rem;
+  font: inherit;
+  background: #fffdf6;
+  color: var(--ink);
+}
+
+.search input:focus {
+  outline: 2px solid var(--saffron);
+  outline-offset: 2px;
+}
+
+.hint {
+  margin: 0.6rem 0 0;
+  color: var(--maroon);
+  font-size: 0.95rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
