@@ -1,5 +1,6 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { DEFAULT_LANGUAGE_ID, LANGUAGES } from '../data/languages';
+import { ODIA_LINES } from '../data/odia-verses';
 import { transliterate } from '../data/transliterate';
 import { VERSES } from '../data/verses';
 import { DisplayVerse, Language } from '../models/chalisa.model';
@@ -25,12 +26,19 @@ export class ChalisaService {
       type: verse.type,
       number: verse.number,
       meaningEn: verse.meaningEn,
-      lines:
-        language.script === 'roman'
-          ? verse.roman
-          : verse.hindi.map((line) => transliterate(line, language.script)),
+      lines: this.linesFor(language, verse),
     }));
   });
+
+  private linesFor(language: Language, verse: (typeof VERSES)[number]): string[] {
+    if (language.script === 'roman') {
+      return verse.roman;
+    }
+    if (language.id === 'odia') {
+      return ODIA_LINES[verse.id] ?? verse.hindi.map((line) => transliterate(line, 'odia'));
+    }
+    return verse.hindi.map((line) => transliterate(line, language.script));
+  }
 
   selectLanguage(id: string): boolean {
     const language = this.languages.find((item) => item.id === id);

@@ -32,6 +32,9 @@ describe('ChalisaService', () => {
 
   it('renders Odia script after selection', () => {
     service.selectLanguage('odia');
-    expect(service.verses()[2].lines[0]).toContain('ଜୟ');
+    expect(service.verses()[2].lines[0]).toContain('ଜୟ ହନୁମାନ ଜ୍ଞାନ ଗୁଣ ସାଗର');
+    expect(service.verses().find((verse) => verse.id === 'chaupai-39')?.lines[0]).toContain(
+      'ଚାଳିଶା',
+    );
   });
 });
